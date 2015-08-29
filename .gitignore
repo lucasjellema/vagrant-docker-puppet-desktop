@@ -1,8 +1,5 @@
-# Compiled Form Modules
-*.fmx
+#staging files
+files/
 
-# Compiled Menu Modules
-*.mmx
-
-# Compiled Pre-Linked Libraries
-*.plx
+#Vagrant config
+.vagrant/

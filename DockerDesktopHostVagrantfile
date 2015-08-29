@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.vm.provision "docker"
+  config.vm.synced_folder "c:/data", "/host_data"
+  config.vm.synced_folder "c:/temp", "/host_temp"
+
+  # The following line terminates all ssh connections. Therefore
+  # Vagrant will be forced to reconnect.
+  config.vm.provision "shell", inline:
+    "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill"
+ 
+  config.vm.define "dockerdesktophostvm"
+  config.vm.box = "ubuntu/trusty64"
+  ## define here the IP address on which the VM will be accessible to the Vagrant Host machine
+  config.vm.network :private_network, ip: "10.10.10.30"
+
+ 
+  config.vm.provider :virtualbox do |vb|
+      vb.name = "dockerdesktophostvm"
+	  vb.gui = true
+ 
+	  end
+ 
+end
